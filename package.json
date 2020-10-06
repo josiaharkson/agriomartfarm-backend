@@ -1,0 +1,66 @@
+{
+  "name": "team-030-backend",
+  "version": "1.0.0",
+  "description": "[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e20c185539ad4701a0c579f933436d37)](https://app.codacy.com/gh/BuildForSDGCohort2/Team-030-Backend?utm_source=github.com&utm_medium=referral&utm_content=BuildForSDGCohort2/Team-030-Backend&utm_campaign=Badge_Grade_Settings)",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha src/tests/*.test.js --require @babel/polyfill --require @babel/register -R spec --timeout 60000 --exit",
+    "start": "npm-run-all --parallel start:dev lint:watch",
+    "start:debug": "cross-env DEBUG=worker nodemon --exec babel-node src/index.js",
+    "clean": "rimraf build",
+    "build": "babel src -d build",
+    "start:build": "npm-run-all clean build",
+    "lint:watch": "esw src --watch",
+    "fix": "npm run lint:watch -- --fix",
+    "start:dev": "cross-env NODE_ENV=development npm-run-all start:build start:debug",
+    "start_prod": "cross-env NODE_ENV=production npm-run-all start:build start:debug lint:watch",
+    "test:debug": "cross-env NODE_ENV=test DEBUG=test npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BuildForSDGCohort2/Team-030-Backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BuildForSDGCohort2/Team-030-Backend/issues"
+  },
+  "homepage": "https://github.com/BuildForSDGCohort2/Team-030-Backend#readme",
+  "dependencies": {
+    "@babel/runtime": "^7.11.2",
+    "@hapi/joi": "^17.1.1",
+    "bcryptjs": "^2.4.3",
+    "chalk": "^4.1.0",
+    "debug": "^4.1.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.0",
+    "morgan": "^1.10.0",
+    "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1",
+    "@babel/node": "^7.10.5",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/polyfill": "^7.10.4",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/register": "^7.10.5",
+    "@types/express": "^4.17.7",
+    "babel-eslint": "^10.1.0",
+    "chai": "^4.2.0",
+    "cross-env": "^7.0.2",
+    "eslint": "^7.7.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-watch": "^7.0.0",
+    "mocha": "^8.1.1",
+    "nodemon": "^2.0.4",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "supertest": "^4.0.2"
+  }
+}

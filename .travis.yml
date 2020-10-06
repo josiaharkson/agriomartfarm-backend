@@ -1,0 +1,27 @@
+# branches:
+#  only:
+#   - team-030-heroku-deploy
+language: node_js
+node_js:
+ - "stable"
+cache:
+ directories:
+  - node_modules
+services:
+ - mongodb
+install:
+ - npm install
+before_script:
+ - cp .env.sample .env
+script:
+ - npm run test:debug
+after_success:
+ - echo "Test complete" # Would be replaced with script to run code coverage
+deploy:
+ provider: "heroku"
+ api_key:
+  secure: "------"
+ app: "agromart-api"
+ on:
+  branch: 
+    team-030-heroku-deploy
